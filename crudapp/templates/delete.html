@@ -1,0 +1,18 @@
+
+{%block content%}
+
+<br>
+<div class="row">
+    <div class="col-md-6">
+        <div class="card card-body">
+                    <form action="{% url 'delete' form.id %}" method="POST">
+                        {% csrf_token %}
+                        <p>Do you want to delete {{form}}</p>
+                        <a class="btn btn-sm btn-warning" href="{% url 'read' %}">Cancel</a>
+                        <input class="btn btn-sm btn-danger"type="submit" name="confirm">
+                    </form>
+
+        </div>
+    </div>
+</div>
+{%endblock%}
