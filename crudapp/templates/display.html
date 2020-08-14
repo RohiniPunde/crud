@@ -2,15 +2,33 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Crud operations</title>
 </head>
 <body>
+ {%block content%}
+
+    {% include 'home.html' %}
+
+ {%endblock%}
+
 <div class="row">
         <div class="col-md">
                     <div class="card card-body">
                         <form method="get">
                             {{myfilter.form}}
-                            <button class="btn btn-primary">Search</button>
+                            <button class="btn btn-info">Search</button>
+                             <a href="create" class="btn btn-info" role="button">Create</a>
+                             <a href="display" class="btn btn-info" role="button">Sort</a>
+                             <a href="index" class="btn btn-info" role="button">Pagination</a>
+                        </form>
+                    </div>
+        </div>
+</div>
+
+<div class="row">
+        <div class="col-md">
+                    <div class="card card-body">
+                        <form>
                         </form>
                     </div>
         </div>
@@ -19,8 +37,7 @@
 
 
 
-
-<h1>Display data:</h1>
+ <button type="button" class="btn btn-secondary btn-lg btn-block">Customer Information</button>
                             <table class="table table-sm">
                                 <tr>
                                     <th>Name</th>

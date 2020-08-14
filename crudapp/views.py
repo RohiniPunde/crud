@@ -7,6 +7,9 @@ from django.contrib.auth.models import User
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from .models import Customer
 
+
+
+
 def index(request):
     user_list = Customer.objects.all()
     page = request.GET.get('page', 1)
@@ -22,10 +25,10 @@ def index(request):
     return render(request, 'user_list.html', { 'users': users })
 
 
-
-
 def display(request):
-    return render(request,'main.html')
+    name = Customer.objects.order_by('name')
+    context={'name':name}
+    return render(request,'main.html',context)
 
 def create(request):
     form=CustomerForm
@@ -40,11 +43,12 @@ def home(request):
     return render(request,'home.html')
 
 def read(request):
+    name= Customer.objects.order_by('name')
     customer = Customer.objects.all()
     #delivered = orders.filter(status='Delivered').count()
     myfilter=CustomerFilter(request.GET,queryset=customer)
     customer=myfilter.qs
-    context = {'customer': customer,'myfilter':myfilter}
+    context = {'customer': customer,'myfilter':myfilter,'name':name}
     return render(request,"display.html", context)
 
 def update(request,pk):
