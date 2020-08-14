@@ -1,3 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Pagination</title>
+</head>
+<body>
+ {%block content%}
+
+    {% include 'home.html' %}
+
+ {%endblock%}
+
+<button type="button" class="btn btn-secondary btn-lg btn-block">Customers data with pagination</button>
 <table class="table table-bordered">
   <thead>
     <tr>
@@ -17,8 +31,9 @@
   </tbody>
 </table>
 
+
 {% if users.has_other_pages %}
-  <ul class="pagination">
+  <ul class="pagination text-center">
     {% if users.has_previous %}
       <li><a href="?page={{ users.previous_page_number }}">&laquo;</a></li>
     {% else %}
@@ -38,3 +53,5 @@
     {% endif %}
   </ul>
 {% endif %}
+</body>
+</html>

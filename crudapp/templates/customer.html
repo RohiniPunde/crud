@@ -2,8 +2,15 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title of</title>
+    <title>Create customer</title>
 </head>
+<body>
+{%block content%}
+
+    {% include 'home.html' %}
+
+
+<br>
 <form action="" method="POST" >
     {%csrf_token%}
     {{form}}
@@ -11,6 +18,6 @@
     <input type="submit" name="submit">
 </form>
 
-
+{%endblock%}
 </body>
 </html>

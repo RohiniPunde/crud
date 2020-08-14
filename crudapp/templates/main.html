@@ -1,18 +1,56 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Sorting</title>
 </head>
-<label> Name:</label>
-<input name="text">
-<label> Phone:</label>
-<input name="text">
-<label> Email:</label>
-<input name="text">
-<label> Date_created:</label>
-<input name="text">
+<body>
+
+{%block content%}
+
+    {% include 'home.html' %}
+
+ {%endblock%}
+<button type="button" class="btn btn-secondary btn-lg btn-block">Sorting customers data</button>
+
+
+                            <table class="table table-sm">
+                                <tr>
+                                    <th>Name</th>
+                                    <th>phone</th>
+                                    <th>email</th>
+                                    <th>Date-ordered</th>
+
+                                </tr>
+                                 {% for i in name %}
+                                    <tr>
+                                        <td>{{i.name}}</td>
+                                        <td>{{i.phone}}</td>
+                                        <td>{{i.email}}</td>
+                                        <td>{{i.date_created}}</td>
+                                    </tr>
+                                 {%endfor%}
+                            </table>
 
 
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
