@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,16 +19,15 @@
                                     <th>Name</th>
                                     <th>phone</th>
                                     <th>email</th>
-                                    <th>Date-ordered</th>
 
                                 </tr>
-                                 {% for i in name %}
+                                 {% for i in phone %}
                                     <tr>
                                         <td>{{i.name}}</td>
                                         <td>{{i.phone}}</td>
                                         <td>{{i.email}}</td>
-                                        <td>{{i.date_created}}</td>
                                     </tr>
+
                                  {%endfor%}
                             </table>
 
