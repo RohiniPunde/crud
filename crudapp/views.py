@@ -7,6 +7,7 @@ from django.contrib.auth.models import User
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from .models import Customer
 from . import filters
+from django.db.models import Q
 
 def sample(request):
     return render(request,'sample.html')
@@ -60,7 +61,7 @@ def read(request):
     user_list = Customer.objects.all().order_by('name')
     page = request.GET.get('page', 1)
     filtered_qs = filters.CustomerFilter( request.GET,queryset=Customer.objects.all().order_by('name')).qs
-    paginator = Paginator(filtered_qs, 5)
+    paginator = Paginator(filtered_qs, 3)
 
    # paginator = Paginator(user_list, 4)
     try:
@@ -124,7 +125,12 @@ def delete(request,pk):
     customer.delete()
     return redirect('/')
 
-
-   # context = {'form': customer}
-   # return render(request, 'delete.html', context)
-
+def search(request):
+    query=request.GET['query']
+    users=Customer.objects.all().filter(Q(name__icontains=query)|
+                                        Q(phone__icontains=query)|
+                                        Q(email__icontains=query))
+    #users=Customer.objects.all()
+   # users=Customer.objects.filter(email__contains=query)
+    context={'users':users}
+    return render(request,'display.html',context)
