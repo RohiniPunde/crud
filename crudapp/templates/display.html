@@ -10,17 +10,28 @@
     {% include 'home.html' %}
 
  {%endblock%}
-
+<!--
 <div class="row">
         <div class="col-md">
                     <div class="card card-body">
-                        <form method="get">
-                            {{myfilter.form}}
-                            <button class="btn btn-info">Search</button>
-                             <a href="create" class="btn btn-info" role="button">Create</a>
-                             <a href="display" class="btn btn-info" role="button">Sort</a>
-                             <a href="index" class="btn btn-info" role="button">Pagination</a>
-                        </form>
+                        <tr>
+                        <form action="" method="POST" >
+                         {%csrf_token%}
+            <!--                {{form}}-->
+
+                   <!--       <input type="submit" class="btn btn-info" value="Add+" name="submit">
+
+                         <a href="display" class="btn btn-info" role="button">Sort</a>-->
+                      <!--      </form>
+
+
+<!--             <button type="button" class="btn btn-primary">Submit</button>      <form method="get">-->
+<!--                            &lt;!&ndash;-->
+<!--                            {{myfilter.form}}-->
+<!--                             <button class="btn btn-info">Search</button>-->
+<!--                         &#45;&#45;!>-->
+<!--                        </form>-->
+
                     </div>
         </div>
 </div>
@@ -29,6 +40,14 @@
         <div class="col-md">
                     <div class="card card-body">
                         <form>
+                            <!--{% for i in phone %}
+                                    <tr>
+                                        <td>{{i.name}}</td>
+                                        <td>{{i.phone}}</td>
+                                        <td>{{i.email}}</td>
+                                    </tr>
+
+                                 {%endfor%}-->
                         </form>
                     </div>
         </div>
@@ -37,27 +56,70 @@
 
 
 
- <button type="button" class="btn btn-secondary btn-lg btn-block">Customer Information</button>
+ <button type="button" class="btn btn-secondary btn-lg btn-block">Employess Information</button>
                             <table class="table table-sm">
-                                <tr>
+                                <tr><th>ID</th>
                                     <th>Name</th>
-                                    <th>phone</th>
-                                    <th>email</th>
-                                    <th>Date-ordered</th>
+                                    <th>Phone</th>
+                                    <th>Email</th>
                                     <th>Update</th>
                                     <th>Remove</th>
                                 </tr>
-                                 {% for i in customer %}
-                                    <tr>
-                                        <td>{{i.name}}</td>
-                                        <td>{{i.phone}}</td>
-                                        <td>{{i.email}}</td>
-                                        <td>{{i.date_created}}</td>
-                                        <td><a class="btn btn-sm btn-info" href="{% url 'update' i.id %}">Update</a></td>
-                                        <td><a class="btn btn-sm btn-danger" href="{% url 'delete' i.id%}">Delete</a></td>
+                                 {% for i in users %}
+                                <tr>
+                                        <form action="update" method="post">
+                                            {% csrf_token %}
+                                        <td><input type="text"  name="id" value={{i.id}} readonly/></td>
+                                        <td><input type="text" name="name" value={{i.name}} /></td>
+                                        <td><input type="text" name="phone" value={{i.phone}} /></td>
+                                        <td><input type="text" name="email" value={{i.email}} /></td>
+                                        <td><input type="submit" class="btn btn-primary" value="Update" name="_update" /></td>
+                                        <td><input type="submit" class="btn btn-danger" value="Delete" name="_delete" /></td>
+                                        </form>
                                     </tr>
                                  {%endfor%}
                             </table>
+
+{% if users.has_other_pages %}
+  <ul class="pagination text-center">
+    {% if users.has_previous %}
+      <li><a href="?page={{ users.previous_page_number }}">&laquo;</a></li>
+    {% else %}
+      <li class="disabled"><span>&laquo;</span></li>
+    {% endif %}
+    {% for i in users.paginator.page_range %}
+      {% if users.number == i %}
+        <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+      {% else %}
+        <li><a href="?page={{ i }}">{{ i }}</a></li>
+      {% endif %}
+    {% endfor %}
+    {% if users.has_next %}
+      <li><a href="?page={{ users.next_page_number }}">&raquo;</a></li>
+    {% else %}
+      <li class="disabled"><span>&raquo;</span></li>
+    {% endif %}
+  </ul>
+{% endif %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 </body>

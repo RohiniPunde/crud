@@ -9,5 +9,6 @@ class CustomerFilter(django_filters.FilterSet):
     class Meta:
         model=Customer
         fields='__all__'
-        exclude=['phone','date_created','email']
+        exclude=['']
+
 
