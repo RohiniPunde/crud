@@ -10,7 +10,7 @@ from . import filters
 from django.db.models import Q
 
 def sample(request):
-    return render(request,'sample.html')
+    return render(request,'main.html')
 
 
 
@@ -109,7 +109,6 @@ def update(request):
     #customer.save()
 
 
-
     # form=CustomerForm(instance=customer)
     #if request.method == 'POST':
     #form = CustomerForm(request.GET,instance=customer)
@@ -134,3 +133,17 @@ def search(request):
    # users=Customer.objects.filter(email__contains=query)
     context={'users':users}
     return render(request,'display.html',context)
+
+
+def add(request):
+    if request.method=='POST':
+        name=request.POST['name']
+        phone=request.POST['phone']
+        email=request.POST['email']
+
+        user = Customer(name=name,phone=phone,email=email)
+        user.save()
+        print("user created")
+
+    else:
+        return HttpResponse("no data")

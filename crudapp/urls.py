@@ -10,6 +10,7 @@ urlpatterns = [
     path('search', views.search, name="search"),
     path('home', views.home, name="home"),
     path('index', views.index, name="index"),
+   # path('/add', views.add, name="add"),
     path('', views.read, name="read"),
     path('update', views.update, name='update'),
     path('delete/<str:pk>/', views.delete, name='delete'),

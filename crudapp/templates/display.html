@@ -10,23 +10,23 @@
     {% include 'home.html' %}
 
  {%endblock%}
-
+<!--
 <div class="row">
         <div class="col-md">
                     <div class="card card-body">
                         <tr>
                         <form action="" method="POST" >
                          {%csrf_token%}
-                            {{form}}
+            <!--                {{form}}-->
 
-                        <input type="submit" class="btn btn-info" value="Add+" name="submit">
+                   <!--       <input type="submit" class="btn btn-info" value="Add+" name="submit">
 
-<!--                             <a href="display" class="btn btn-info" role="button">Sort</a>-->
-                        </form>
+                         <a href="display" class="btn btn-info" role="button">Sort</a>-->
+                      <!--      </form>
 
-<!--                        <form method="get">-->
+
+<!--             <button type="button" class="btn btn-primary">Submit</button>      <form method="get">-->
 <!--                            &lt;!&ndash;-->
-
 <!--                            {{myfilter.form}}-->
 <!--                             <button class="btn btn-info">Search</button>-->
 <!--                         &#45;&#45;!>-->
@@ -101,6 +101,25 @@
     {% endif %}
   </ul>
 {% endif %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 </body>
